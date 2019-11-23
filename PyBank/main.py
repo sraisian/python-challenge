@@ -19,14 +19,16 @@ from pandas import DataFrame
 
 csvpath = os.path.join("PyBank.csv")
 #read csv file to dataframe (df)
-#count rows - header row to find total months
 with open(csvpath, newline="") as csvfile:
     csvreader = csv.reader(csvfile, delimiter=",")
     df = pd.read_csv(csvfile)
-    month=sum(1 for line in csvfile)
-    
+
+
+
 #sum up the Profit/Loss Column to get total profit
 sum1 = df['Profit/Losses'].sum()
+#count rows - header row to find total months
+month = df['Profit/Losses'].count()
 
 #create new col in df ("Difference") that is difference between P/L - P/L from prev
 df['Difference'] = df['Profit/Losses'] - df['Profit/Losses'].shift(1)
@@ -63,7 +65,7 @@ minlist = minlist[0]
 print("----------------------------")
 print("Financial Analysis")
 print("----------------------------")    
-print("Total Months:" + str(month-1)) #-1 for the header row
+print("Total Months:" + str(month)) #-1 for the header row
 print("Total Profit: $" + str(sum1))
 print("Average Change: $" + str(average))
 print("Greatest Increase in Profits: " + str(maxlist[0]) + " " + str(maxlist[-1]))
@@ -73,7 +75,7 @@ print("Greatest Decrease in Profits: "+ str(minlist[0]) + " " + str(minlist[-1])
 f= open("Results.txt","w+")   
 
 line1="Financial Analysis" + '\n'
-line2 ="Total Months:" + str(month-1) + '\n'
+line2 ="Total Months:" + str( month - 1) + '\n'
 line3="Total Profit: $" + str(sum1) + '\n'
 line4="Average Change: $" + str(average) + '\n'
 line5="Greatest Increase in Profits: " + str(maxlist[0]) + " " + str(maxlist[-1]) + '\n'
@@ -82,12 +84,6 @@ line6="Greatest Decrease in Profits: "+ str(minlist[0]) + " " + str(minlist[-1])
 f.writelines([line1, line2, line3, line4, line5, line6])
 
 f.close()
-
-
-
-
-
-
 
 
 
