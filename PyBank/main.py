@@ -75,7 +75,7 @@ print("Greatest Decrease in Profits: "+ str(minlist[0]) + " " + str(minlist[-1])
 f= open("Results.txt","w+")   
 
 line1="Financial Analysis" + '\n'
-line2 ="Total Months:" + str( month - 1) + '\n'
+line2 ="Total Months:" + str( month) + '\n'
 line3="Total Profit: $" + str(sum1) + '\n'
 line4="Average Change: $" + str(average) + '\n'
 line5="Greatest Increase in Profits: " + str(maxlist[0]) + " " + str(maxlist[-1]) + '\n'
